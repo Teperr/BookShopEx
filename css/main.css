@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+table, th, td{
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+table tr:nth-child(odd) {
+    background-color: lightgray;
+}
+
+table button {
+    border-radius: 15px;
+    margin-inline-start: 10px;
+    
+}
+
+.read-button {
+    background-color: #66baf0;
+    border: none;
+}
+
+.update-button{
+    background-color: #efc854;
+    border: none;
+    
+}
+
+.delete-button{
+    background-color: #e4852d;
+    border: none;
+
+}
