@@ -34,6 +34,7 @@ function updateBook(bookId, newPrice) {
 
 
 function addBook(bookTitel, bookPrice) {
+    if (!bookTitel || !bookPrice) return
     const book = _createBook(bookTitel, bookPrice)
     gBooks.unshift(book)
 
