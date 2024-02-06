@@ -57,9 +57,9 @@ function filterBy(letter) {
         bookNameSearch.pop()
     }
     // console.log('bookNameSearch:', bookNameSearch.join(''))
-    var bookName = bookNameSearch.join('')
+    var bookName = bookNameSearch.join('').toLowerCase()
 
-    var filterBooks = gBooks.filter(book => book.title.includes(bookName))
+    var filterBooks = gBooks.filter(book => book.title.toLowerCase().includes(bookName))
     // console.log('filterBooks:', filterBooks)
     gBooks = filterBooks
 
