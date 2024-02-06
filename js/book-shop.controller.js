@@ -28,6 +28,18 @@ function renderBook() {
     `)
 
     elTable.innerHTML = tableHeder + strHtml.join('')
+    renderStats()
+}
+
+function renderStats(){
+    const elExpensive = document.querySelector('.expensive-books')
+    const elAverage = document.querySelector('.average-books')
+    const elCheap = document.querySelector('.cheap-books')
+
+    elExpensive.innerText = getBookAbove200()
+    elAverage.innerText = getBookBetween()
+    elCheap.innerText = getBookBelow80()
+
 }
 
 function onRemoveBook(bookId) {

@@ -72,3 +72,14 @@ table button {
     padding: 5px;
     
 }
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background-color: lightgrey;
+
+    padding: 10px;
+    
+}

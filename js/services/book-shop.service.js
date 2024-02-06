@@ -67,6 +67,28 @@ function filterBy(letter) {
 }
 
 
+function getBookAbove200(){
+    const numberOfBook = gBooks.filter(book => book.price > 200)
+    // console.log('numberOfBook:', numberOfBook.length)
+    return numberOfBook.length
+
+}
+
+function getBookBetween(){
+    const numberOfBook = gBooks.filter(book => book.price > 80 && book.price < 200)
+    // console.log('numberOfBook:', numberOfBook.length)
+    return numberOfBook.length
+
+}
+
+function getBookBelow80(){
+    const numberOfBook = gBooks.filter(book => book.price < 80)
+    // console.log('numberOfBook:', numberOfBook.length)
+    return numberOfBook.length
+
+}
+
+
 
 
 
