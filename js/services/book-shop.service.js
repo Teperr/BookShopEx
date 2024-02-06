@@ -36,12 +36,20 @@ function addBook(bookTitel, bookPrice) {
 }
 
 
+function readBook(bookId) {
+    const book = gBooks.find(book => book.id === bookId)
+    console.log('book:', book)
+    return book
+
+}
+
+
 // privet function
 function _createBook(bookTitel, bookPric) {
     return {
         id: makeId(3),
         title: bookTitel,
-        price:bookPric,
+        price: bookPric,
         imgUrl: null
     }
 

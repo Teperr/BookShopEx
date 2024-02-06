@@ -54,3 +54,18 @@ function onAddBook() {
 
 
 }
+
+
+function onReadBook(bookId){
+    const elModal = document.querySelector('.book-details')
+    const elTitel = document.querySelector('.book-details h2 span')
+    const elPre = document.querySelector('pre')
+
+    const book = readBook(bookId)
+    const bookStr = JSON.stringify(book , null , 4)
+
+    elTitel.innerText = book.title
+    elPre.innerText = bookStr
+    
+    elModal.showModal()
+}
