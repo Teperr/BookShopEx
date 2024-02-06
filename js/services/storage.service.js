@@ -1,2 +1,2 @@
 'use strict'
-console.log('storage:')
+// console.log('storage:')

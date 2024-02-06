@@ -8,22 +8,18 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 
-<body>
+<body onload="onInit()">
 
-
-    <table>
-        <tr>
-            <th>Title</th>
-            <th>Price</th>
-            <th>Actions</th>
-        </tr>
+    <table></table>
+    <!-- <table>
+        <tr><th>Title</th><th>Price</th><th>Actions</th></tr>
         <tr>
             <td>The life about Omer</td>
             <td>120</td>
             <td>
-                <button class="read-button">Read</button>
-                <button class="update-button">Update</button>
-                <button class="delete-button">Delete</button>
+                <button onclick="onReadBook()" class="read-button">Read</button>
+                <button onclick="onUpdateBook()" class="update-button">Update</button>
+                <button onclick="onRemoveBook()" class="delete-button">Delete</button>
             </td>
         </tr>
         <tr>
@@ -44,7 +40,7 @@
                 <button class="delete-button">Delete</button>
             </td>
         </tr>
-    </table>
+    </table> -->
 
     <script src="js/services/util.service.js"></script>
     <script src="js/services/storage.service.js"></script>
