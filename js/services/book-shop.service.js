@@ -1,9 +1,11 @@
 'use strict'
 // console.log('book-shop.service:')
 
-var gBooks 
+var gBooks
 _createBooks()
-  
+
+var bookNameSearch = []
+
 console.log('gBooks:', gBooks)
 
 
@@ -47,13 +49,29 @@ function readBook(bookId) {
 
 }
 
+function filterBy(letter) {
+    gBooks = loadFromStorage('bookDB')
+    if (letter) {
+        bookNameSearch.push(letter)
+    } else {
+        bookNameSearch.pop()
+    }
+    // console.log('bookNameSearch:', bookNameSearch.join(''))
+    var bookName = bookNameSearch.join('')
+
+    var filterBooks = gBooks.filter(book => book.title.includes(bookName))
+    // console.log('filterBooks:', filterBooks)
+    gBooks = filterBooks
+
+}
+
 
 // privet function
 
 
-function _createBooks(){
+function _createBooks() {
     gBooks = loadFromStorage('bookDB')
-    if (!gBooks || gBooks.length === 0){
+    if (!gBooks || gBooks.length === 0) {
         gBooks = [
             _createBook('The life about Omer', 120),
             _createBook('The life about Shira', 300),
@@ -74,7 +92,7 @@ function _createBook(bookTitel, bookPric) {
 
 }
 
-function _saveBooks(){
+function _saveBooks() {
     saveToStorage('bookDB', gBooks)
 
 }

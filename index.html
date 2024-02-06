@@ -9,9 +9,17 @@
 </head>
 
 <body onload="onInit()">
+    <section class="filter">
+        <form>
+            <input oninput="onFilterBy(event)" type="text" placeholder="search">
+            
+        </form>
+    </section>
+
+    <div class="table"><table></table></div>
+
     <button onclick="onAddBook()" class="add-button">Add a Book</button>
-    <table></table>
-    
+
     <dialog class="book-details">
         <form method="dialog">
             <h2>Book Name: <span></span></h2>
