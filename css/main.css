@@ -7,6 +7,20 @@ body {
     text-align: center;
 }
 
+.filter{
+    margin: 10px;
+}
+
+input {
+    border-radius: 15px;
+    
+}
+.table{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 table, th, td{
     border: 1px solid black;
     border-collapse: collapse;
@@ -20,22 +34,41 @@ table tr:nth-child(odd) {
 table button {
     border-radius: 15px;
     margin-inline-start: 10px;
-    
+    cursor: pointer;
 }
 
 .read-button {
     background-color: #66baf0;
     border: none;
+    /* cursor: pointer; */
 }
 
 .update-button{
     background-color: #efc854;
     border: none;
-    
+    /* cursor: pointer; */
 }
 
 .delete-button{
     background-color: #e4852d;
     border: none;
+    /* cursor: pointer; */
 
+}
+
+.add-button {
+    margin: 10px;
+    border-radius: 15px;
+    cursor: pointer;
+    background-color: rgba(20, 215, 205, 0.68);
+    border: none;
+    padding: 5px;
+}
+
+.add-button:hover{
+    background-color: lightseagreen;
+    color: #fff;
+    border: none;
+    padding: 5px;
+    
 }
