@@ -10,14 +10,36 @@
 
 <body onload="onInit()">
     <h1>Book library</h1>
-    <section class="filter">
+    <fieldset>
+        <legend>Filtering & Sorting</legend>
+
+        <div class="filter">
+            <input class="search" oninput="onFilterBy(event)" type="search" placeholder="search">
+            <!-- <button onclick="renderBook()" class="clear">Clear</button> -->
+
+            <select class="dropdown-rating" onchange="onFilterBy(event,+this.value)">
+                <option value="">Select Rating</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+
+        </div>
+
+    </fieldset>
+
+    <!-- <section class="filter">
         <form>
-            <input oninput="onFilterBy(event)" type="text" placeholder="search">
+            <input oninput="onFilterBy(event)" type="search" placeholder="search">
             <button onclick="renderBook()" class="clear">Clear</button>
         </form>
-    </section>
+    </section> -->
 
-    <div class="table"><table></table></div>
+    <div class="table">
+        <table></table>
+    </div>
 
     <button onclick="onAddBook()" class="add-button">Add a Book</button>
 

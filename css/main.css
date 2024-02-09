@@ -7,21 +7,31 @@ body {
     text-align: center;
 }
 
-.filter{
+.filter {
     margin: 10px;
 }
 
 input {
     border-radius: 15px;
-    
+
 }
-.table{
+
+.dropdown-rating {
+    margin-inline-start: 20px;
+}
+
+.table {
+
     display: flex;
     align-items: center;
     justify-content: center;
+
+    margin-top: 10px;
 }
 
-table, th, td{
+table,
+th,
+td {
     border: 1px solid black;
     border-collapse: collapse;
     padding: 5px;
@@ -43,13 +53,13 @@ table button {
     /* cursor: pointer; */
 }
 
-.update-button{
+.update-button {
     background-color: #efc854;
     border: none;
     /* cursor: pointer; */
 }
 
-.delete-button{
+.delete-button {
     background-color: #e4852d;
     border: none;
     /* cursor: pointer; */
@@ -65,12 +75,12 @@ table button {
     padding: 5px;
 }
 
-.add-button:hover{
+.add-button:hover {
     background-color: lightseagreen;
     color: #fff;
     border: none;
     padding: 5px;
-    
+
 }
 
 footer {
@@ -81,5 +91,5 @@ footer {
     background-color: lightgrey;
 
     padding: 10px;
-    
+
 }

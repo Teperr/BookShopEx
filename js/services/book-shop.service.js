@@ -9,9 +9,12 @@ var bookNameSearch = []
 console.log('gBooks:', gBooks)
 
 
-function getBooks() {
+function getBooks(options) {
+    
+    var books = _filterBook(options.filterBy)
+    console.log('books:', books)
 
-    return gBooks
+    return books
 
 }
 
@@ -50,20 +53,17 @@ function readBook(bookId) {
 
 }
 
-function filterBy(letter) {
-    gBooks = loadFromStorage('bookDB')
-    if (letter) {
-        bookNameSearch.push(letter)
+function _filterBook(filterBy) {
+    const txt = filterBy.txt.toLowerCase()
+    const rating = filterBy.rating
+
+    if (!rating){
+        var filterBooks = gBooks.filter(book => book.title.toLowerCase().includes(txt))
     } else {
-        bookNameSearch.pop()
+        filterBooks = gBooks.filter(book => book.title.toLowerCase().includes(txt) && +book.rating === +rating)
     }
-    // console.log('bookNameSearch:', bookNameSearch.join(''))
-    var bookName = bookNameSearch.join('').toLowerCase()
 
-    var filterBooks = gBooks.filter(book => book.title.toLowerCase().includes(bookName))
-    // console.log('filterBooks:', filterBooks)
-    gBooks = filterBooks
-
+    return filterBooks
 }
 
 

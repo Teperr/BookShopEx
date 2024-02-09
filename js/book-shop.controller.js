@@ -1,6 +1,10 @@
 'use strict'
-// console.log('controller:')
-// 
+
+const gQueryOptions = {
+    filterBy: { txt: '', rating: 0 },
+}
+
+
 
 function onInit() {
 
@@ -10,7 +14,7 @@ function onInit() {
 
 function renderBook() {
     const elTable = document.querySelector('table')
-    const books = getBooks()
+    const books = getBooks(gQueryOptions)
     // console.log('books:', books)
 
     const tableHeder = `<tr><th>Title</th><th>Price</th><th>Rating</th><th>Actions</th></tr>`
@@ -32,7 +36,7 @@ function renderBook() {
     renderStats()
 }
 
-function renderStats(){
+function renderStats() {
     const elExpensive = document.querySelector('.expensive-books')
     const elAverage = document.querySelector('.average-books')
     const elCheap = document.querySelector('.cheap-books')
@@ -83,12 +87,16 @@ function onReadBook(bookId) {
     elModal.showModal()
 }
 
-function onFilterBy(ev) {
-    // console.log('ev:', ev.data)
-
-    filterBy(ev.data, ev)
+function onFilterBy(ev, val) {
+    const elSearch = document.querySelector('.search')
+    const elRating = document.querySelector('.dropdown-rating')
+    
+    gQueryOptions.filterBy.txt = elSearch.value
+    gQueryOptions.filterBy.rating = elRating.value
+    
+    // console.log('gQueryOptions:', gQueryOptions)
+    
+    // filterBy(ev.data, ev)
     renderBook()
-
-
 
 }
