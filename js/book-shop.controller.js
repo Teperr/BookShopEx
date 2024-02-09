@@ -13,12 +13,13 @@ function renderBook() {
     const books = getBooks()
     // console.log('books:', books)
 
-    const tableHeder = `<tr><th>Title</th><th>Price</th><th>Actions</th></tr>`
+    const tableHeder = `<tr><th>Title</th><th>Price</th><th>Rating</th><th>Actions</th></tr>`
 
     const strHtml = books.map(book => `
         <tr>
             <td>${book.title}</td>
             <td>${book.price}</td>
+            <td>${book.rating}</td>
             <td>
                 <button onclick="onReadBook('${book.id}')" class="read-button">Read</button>
                 <button onclick="onUpdateBook('${book.id}')" class="update-button">Update</button>

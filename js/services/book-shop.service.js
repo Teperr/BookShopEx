@@ -108,12 +108,13 @@ function _createBooks() {
 
 }
 
-function _createBook(bookTitel, bookPric) {
+function _createBook(bookTitel, bookPric, rating) {
     return {
         id: makeId(3),
         title: bookTitel,
         price: bookPric,
-        imgUrl: null
+        imgUrl: null,
+        rating: rating || getRandomIntInclusive(1, 5)
     }
 
 }
