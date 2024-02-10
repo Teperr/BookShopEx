@@ -7,7 +7,7 @@ body {
     text-align: center;
     margin: 0px;
     min-height: 100vh;
-    
+
 }
 
 .filter {
@@ -17,14 +17,15 @@ body {
 
 input {
     border-radius: 15px;
-    
+
 }
 
 .dropdown-rating {
     margin-inline-start: 20px;
 }
 
-.add-button-div{
+.add-button-div,
+.sort-by-div {
     display: inline;
 
 }
@@ -38,7 +39,7 @@ input {
     margin-top: 10px;
     /* min-height: 100vh; */
     /* min-width: 100vw; */
-    
+
 }
 
 table,
@@ -85,7 +86,7 @@ table button {
     background-color: rgba(20, 215, 205, 0.68);
     border: none;
     padding: 5px;
-    
+
 }
 
 

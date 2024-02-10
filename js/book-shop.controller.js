@@ -2,6 +2,7 @@
 
 const gQueryOptions = {
     filterBy: { txt: '', rating: 0 },
+    sortBy: {},
 }
 
 console.log('gQueryOptions:', gQueryOptions)
@@ -49,21 +50,7 @@ function renderStats() {
 
 }
 
-function onClearButtons() {
-    const elSearch = document.querySelector('.search')
-    const elRating = document.querySelector('.dropdown-rating')
 
-    elSearch.value = elRating.value = ''
-
-
-    gQueryOptions.filterBy.txt = gQueryOptions.filterBy.rating = ''
-
-
-    console.log('gQueryOptions:', gQueryOptions)
-
-    renderBook()
-
-}
 
 function onRemoveBook(bookId) {
     removeBook(bookId)
@@ -115,6 +102,34 @@ function onFilterBy(ev, val) {
     // console.log('gQueryOptions:', gQueryOptions)
 
     // filterBy(ev.data, ev)
+    renderBook()
+
+}
+
+function onClearButtons() {
+    const elSearch = document.querySelector('.search')
+    const elRating = document.querySelector('.dropdown-rating')
+
+    elSearch.value = elRating.value = ''
+    gQueryOptions.filterBy.txt = gQueryOptions.filterBy.rating = ''
+
+    renderBook()
+}
+
+
+function onSortBy() {
+    const elSortBy = document.querySelector('.sort-by')
+    const elAscending = document.querySelector('.sort-ascending')
+    const elDescending = document.querySelector('.sort-descending')
+
+    var sortBy = elSortBy.value
+    
+    if(elAscending.checked) var dir = 1
+    else if (elDescending.checked) dir = -1
+
+    gQueryOptions.sortBy = { [sortBy]: dir }
+
+    console.log('gQueryOptions:', gQueryOptions)
     renderBook()
 
 }

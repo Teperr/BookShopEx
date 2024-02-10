@@ -10,9 +10,21 @@ console.log('gBooks:', gBooks)
 
 
 function getBooks(options) {
-    
+
     var books = _filterBook(options.filterBy)
     console.log('books:', books)
+
+    if (options.sortBy.title) {
+        books.sort((book1, book2) => book1.title.localeCompare(book2.title) * options.sortBy.title)
+        
+    } else if (options.sortBy.price) {
+        books.sort((book1, book2) => (book1.price - book2.price) * options.sortBy.price)
+
+    } else if (options.sortBy.rating) {
+        books.sort((book1, book2) => (book1.rating - book2.rating) * options.sortBy.rating)
+    }
+
+    console.log('options.sortBy:', options.sortBy)
 
     return books
 
@@ -57,7 +69,7 @@ function _filterBook(filterBy) {
     const txt = filterBy.txt.toLowerCase()
     const rating = filterBy.rating
 
-    if (!rating){
+    if (!rating) {
         var filterBooks = gBooks.filter(book => book.title.toLowerCase().includes(txt))
     } else {
         filterBooks = gBooks.filter(book => book.title.toLowerCase().includes(txt) && +book.rating === +rating)
@@ -67,21 +79,21 @@ function _filterBook(filterBy) {
 }
 
 
-function getBookAbove200(){
+function getBookAbove200() {
     const numberOfBook = gBooks.filter(book => book.price > 200)
     // console.log('numberOfBook:', numberOfBook.length)
     return numberOfBook.length
 
 }
 
-function getBookBetween(){
+function getBookBetween() {
     const numberOfBook = gBooks.filter(book => book.price > 80 && book.price < 200)
     // console.log('numberOfBook:', numberOfBook.length)
     return numberOfBook.length
 
 }
 
-function getBookBelow80(){
+function getBookBelow80() {
     const numberOfBook = gBooks.filter(book => book.price < 80)
     // console.log('numberOfBook:', numberOfBook.length)
     return numberOfBook.length
