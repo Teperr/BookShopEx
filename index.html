@@ -10,25 +10,38 @@
 
 <body onload="onInit()">
     <h1>Book library</h1>
-    <fieldset>
-        <legend>Filtering & Sorting</legend>
+    <section>
+        <fieldset>
+            <legend>Filtering & Sorting</legend>
+            <div class="filter">
+                <input class="search" oninput="onFilterBy(event)" type="search" placeholder="search">
+                <!-- <button onclick="renderBook()" class="clear">Clear</button> -->
 
-        <div class="filter">
-            <input class="search" oninput="onFilterBy(event)" type="search" placeholder="search">
-            <!-- <button onclick="renderBook()" class="clear">Clear</button> -->
+                <select class="dropdown-rating" onchange="onFilterBy(event,+this.value)">
+                    <option value="">Select Rating</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
 
-            <select class="dropdown-rating" onchange="onFilterBy(event,+this.value)">
-                <option value="">Select Rating</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
 
-        </div>
+                <button onclick="onClearButtons()" class="clear-buttons">Clear</button>
+                
+            </div>
+            
+            <div class="add-button-div">
+                <button onclick="onAddBook()" class="add-button">Add a Book</button>
+                
+            </div>
 
-    </fieldset>
+
+
+
+
+        </fieldset>
+    </section>
 
     <!-- <section class="filter">
         <form>
@@ -41,7 +54,6 @@
         <table></table>
     </div>
 
-    <button onclick="onAddBook()" class="add-button">Add a Book</button>
 
     <dialog class="book-details">
         <form method="dialog">

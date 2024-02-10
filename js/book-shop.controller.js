@@ -4,6 +4,8 @@ const gQueryOptions = {
     filterBy: { txt: '', rating: 0 },
 }
 
+console.log('gQueryOptions:', gQueryOptions)
+
 
 
 function onInit() {
@@ -44,6 +46,22 @@ function renderStats() {
     elExpensive.innerText = getBookAbove200()
     elAverage.innerText = getBookBetween()
     elCheap.innerText = getBookBelow80()
+
+}
+
+function onClearButtons() {
+    const elSearch = document.querySelector('.search')
+    const elRating = document.querySelector('.dropdown-rating')
+
+    elSearch.value = elRating.value = ''
+
+
+    gQueryOptions.filterBy.txt = gQueryOptions.filterBy.rating = ''
+
+
+    console.log('gQueryOptions:', gQueryOptions)
+
+    renderBook()
 
 }
 
@@ -90,12 +108,12 @@ function onReadBook(bookId) {
 function onFilterBy(ev, val) {
     const elSearch = document.querySelector('.search')
     const elRating = document.querySelector('.dropdown-rating')
-    
+
     gQueryOptions.filterBy.txt = elSearch.value
     gQueryOptions.filterBy.rating = elRating.value
-    
+
     // console.log('gQueryOptions:', gQueryOptions)
-    
+
     // filterBy(ev.data, ev)
     renderBook()
 
