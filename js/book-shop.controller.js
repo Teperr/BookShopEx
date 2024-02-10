@@ -3,6 +3,7 @@
 const gQueryOptions = {
     filterBy: { txt: '', rating: 0 },
     sortBy: {},
+    page: { idx: 0, size: 5 }
 }
 
 console.log('gQueryOptions:', gQueryOptions)
@@ -10,7 +11,7 @@ console.log('gQueryOptions:', gQueryOptions)
 
 
 function onInit() {
-
+    // renderRating()
     renderBook()
 
 }
@@ -38,6 +39,21 @@ function renderBook() {
     elTable.innerHTML = tableHeder + strHtml.join('')
     renderStats()
 }
+
+
+// function renderRating() {
+//     const ratings = getRating()
+
+//     const strHtml = ratings.map(rating => `
+//         <option>${rating}</option>
+//     `).join('')
+//     console.log('strHtml:', strHtml)
+
+//     const elLists = document.querySelectorAll('.dropdown-rating')
+//     console.log('elLists:', elLists)
+//     elLists.forEach(list => list.innerHTML += strHtml)
+//     console.log('elLists:', elLists)
+// }
 
 function renderStats() {
     const elExpensive = document.querySelector('.expensive-books')
@@ -68,12 +84,38 @@ function onUpdateBook(bookId) {
 
 
 function onAddBook() {
-    const bookTitel = prompt('Book Name Here')
-    const bookPrice = +prompt('Book Price Here')
+    // const bookTitel = prompt('Book Name Here')
+    // const bookPrice = +prompt('Book Price Here')
+    document.querySelector('.add-button-dialog').showModal()
 
-    addBook(bookTitel, bookPrice)
+
+
+    // addBook(bookTitel, bookPrice)
+    // renderBook()
+
+
+}
+
+function onSaveCar() {
+    const elModal = document.querySelector('.add-button-dialog form')
+
+    const elTitle = document.querySelector('.add-button-dialog .title')
+    const elPrive = document.querySelector('.add-button-dialog .price')
+    const elRating = document.querySelector('.add-button-dialog .rating')
+
+    const bookTitel = elTitle.value
+    const bookPrice = elPrive.value
+    const bookRating = elRating.value
+
+    addBook(bookTitel, bookPrice, bookRating)
+    elModal.reset()
+
     renderBook()
 
+}
+
+function onCloseBookModal() {
+    document.querySelector('.add-button-dialog').close()
 
 }
 
@@ -123,8 +165,8 @@ function onSortBy() {
     const elDescending = document.querySelector('.sort-descending')
 
     var sortBy = elSortBy.value
-    
-    if(elAscending.checked) var dir = 1
+
+    if (elAscending.checked) var dir = 1
     else if (elDescending.checked) dir = -1
 
     gQueryOptions.sortBy = { [sortBy]: dir }
@@ -133,3 +175,28 @@ function onSortBy() {
     renderBook()
 
 }
+
+
+function onNextPage() {
+    var booksCount = getBooksCount(gQueryOptions)
+    if (booksCount > (gQueryOptions.page.idx + 1) * gQueryOptions.page.size) {
+        gQueryOptions.page.idx++
+    } else {
+        gQueryOptions.page.idx = 0
+    }
+
+    renderBook()
+}
+
+
+function onPrevPage() {
+    var booksCount = getBooksCount(gQueryOptions)
+    gQueryOptions.page.idx--
+
+    if (gQueryOptions.page.idx === -1) {
+        gQueryOptions.page.idx = Math.floor(Math.sqrt(booksCount)) - 1
+    }
+
+    renderBook()
+}
+

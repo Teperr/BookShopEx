@@ -1,6 +1,8 @@
 'use strict'
 // console.log('book-shop.service:')
 
+const gRating = [1, 2, 3, 4, 5]
+
 var gBooks
 _createBooks()
 
@@ -12,11 +14,10 @@ console.log('gBooks:', gBooks)
 function getBooks(options) {
 
     var books = _filterBook(options.filterBy)
-    console.log('books:', books)
 
     if (options.sortBy.title) {
         books.sort((book1, book2) => book1.title.localeCompare(book2.title) * options.sortBy.title)
-        
+
     } else if (options.sortBy.price) {
         books.sort((book1, book2) => (book1.price - book2.price) * options.sortBy.price)
 
@@ -24,9 +25,16 @@ function getBooks(options) {
         books.sort((book1, book2) => (book1.rating - book2.rating) * options.sortBy.rating)
     }
 
-    console.log('options.sortBy:', options.sortBy)
+    if (options.page) {
+        const startIdx = options.page.idx * options.page.size
+        books = books.slice(startIdx, startIdx + options.page.size)
+    }
 
     return books
+}
+
+function getRating(){
+    return gRating
 
 }
 
@@ -48,9 +56,9 @@ function updateBook(bookId, newPrice) {
 }
 
 
-function addBook(bookTitel, bookPrice) {
+function addBook(bookTitel, bookPrice, bookRating) {
     if (!bookTitel || !bookPrice) return
-    const book = _createBook(bookTitel, bookPrice)
+    const book = _createBook(bookTitel, bookPrice, bookRating)
     gBooks.unshift(book)
 
     _saveBooks()
@@ -62,6 +70,11 @@ function readBook(bookId) {
     const book = gBooks.find(book => book.id === bookId)
     console.log('book:', book)
     return book
+
+}
+
+function getBooksCount(options) {
+    return _filterBook(options.filterBy).length
 
 }
 
@@ -99,6 +112,8 @@ function getBookBelow80() {
     return numberOfBook.length
 
 }
+
+
 
 
 

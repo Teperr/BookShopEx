@@ -36,13 +36,38 @@
 
             </div>
 
+            <dialog class="add-button-dialog">
+                <form onsubmit="onSaveCar()" method="dialog">
+                    <h2>Add Book</h2>
+
+                    <input class="title" type="text" placeholder="Book Title">
+                    <input class="price" type="number" placeholder="Book Price">
+                    <!-- <input class="rating" type="number" placeholder="Book Rating"> -->
+                    <select class="dropdown-rating rating" onchange="onFilterBy(event,+this.value)">
+                        <option value="">Select Rating</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+
+                    <div class="actions">
+                        <button type="button" onclick="onCloseBookModal()">Cancel</button>
+                        <button>Save</button>
+                    </div>
+
+                </form>
+
+            </dialog>
+
             <div class="sort-by-div">
 
                 <select class="sort-by" onchange="onSortBy()">
                     <option value="">Select Sorting</option>
                     <option value="title">By Title</option>
                     <option value="price">By Price</option>
-                    <option value="rating">By Rating</option>
+                    
                 </select>
 
                 <label>
@@ -58,11 +83,12 @@
 
             </div>
 
-
-
-
-
         </fieldset>
+    </section>
+
+    <section>
+        <button onclick="onPrevPage()" class="prev-page-button">Prev Page</button>
+        <button onclick="onNextPage()" class="next-page-button">Next Page</button>
     </section>
 
     <!-- <section class="filter">
