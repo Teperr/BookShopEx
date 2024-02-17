@@ -12,6 +12,7 @@ console.log('gQueryOptions:', gQueryOptions)
 
 function onInit() {
     // renderRating()
+    readQueryParams()
     renderBook()
 
 }
@@ -144,6 +145,7 @@ function onFilterBy(ev, val) {
     // console.log('gQueryOptions:', gQueryOptions)
 
     // filterBy(ev.data, ev)
+    setQueryParams()
     renderBook()
 
 }
@@ -172,6 +174,7 @@ function onSortBy() {
     gQueryOptions.sortBy = { [sortBy]: dir }
 
     console.log('gQueryOptions:', gQueryOptions)
+    setQueryParams()
     renderBook()
 
 }
@@ -185,6 +188,7 @@ function onNextPage() {
         gQueryOptions.page.idx = 0
     }
 
+    setQueryParams()
     renderBook()
 }
 
@@ -197,6 +201,73 @@ function onPrevPage() {
         gQueryOptions.page.idx = Math.floor(Math.sqrt(booksCount)) - 1
     }
 
+    setQueryParams()
     renderBook()
 }
 
+// Query Params
+
+function readQueryParams() {
+    const queryParams = new URLSearchParams(window.location.search)
+
+    gQueryOptions.filterBy = {
+        txt: queryParams.get('txt') || '',
+        rating: +queryParams.get('rating') || 0
+    }
+
+    if (queryParams.get('sortBy')){
+        const prop = queryParams.get('sortBy')
+        const dir = queryParams.get('sortDir')
+        gQueryOptions.sortBy[prop] = dir
+    }
+
+    if (queryParams.get('pageIdx')){
+        gQueryOptions.page.idx = +queryParams.get('pageIdx')
+        gQueryOptions.page.size = +queryParams.get('pageSize')
+    }
+
+    renderQueryParams()
+}
+
+
+function renderQueryParams(){
+
+    document.querySelector('.filter .search').value = gQueryOptions.filterBy.txt
+    document.querySelector('.filter .dropdown-rating').value = gQueryOptions.filterBy.rating
+
+    const sortKeys = Object.keys(gQueryOptions.sortBy)
+    const sortBy = sortKeys[0]
+    const dir = +gQueryOptions.sortBy[sortKeys[0]]
+
+    document.querySelector('.sort-by-div select').value = sortBy || ''
+    document.querySelector('.sort-by-div input').checked = (dir === -1) ? true : false
+
+}
+
+function setQueryParams() {
+    const queryParams = new URLSearchParams()
+
+    queryParams.set('txt', gQueryOptions.filterBy.txt)
+    queryParams.set('rating', gQueryOptions.filterBy.rating)
+
+
+    const sortKeys = Object.keys(gQueryOptions.sortBy)
+    if (sortKeys.length) {
+        queryParams.set('sortBy', sortKeys[0])
+        queryParams.set('sortDir', gQueryOptions.sortBy[sortKeys[0]])
+    }
+
+    if (gQueryOptions.page) {
+        queryParams.set('pageIdx', gQueryOptions.page.idx)
+        queryParams.set('pageSize', gQueryOptions.page.size)
+    }
+
+    const newUrl =
+        window.location.protocol + "//" +
+        window.location.host +
+        window.location.pathname + '?' + queryParams.toString()
+
+    window.history.pushState({ path: newUrl }, '', newUrl)
+
+
+}

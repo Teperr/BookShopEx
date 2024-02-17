@@ -73,6 +73,11 @@ function readBook(bookId) {
 
 }
 
+function getBookById(bookId){
+    return gBooks.find(book => bookId === book.id)
+
+}
+
 function getBooksCount(options) {
     return _filterBook(options.filterBy).length
 

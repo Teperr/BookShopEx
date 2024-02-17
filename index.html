@@ -72,13 +72,13 @@
 
                 <label>
                     <span>Ascending</span>
-                    <input class="sort-ascending" type="checkbox" oninput="onSortBy()" />
+                    <input type="radio" class="sort-ascending" name="sortBy" onchange="onSortBy()" />
+                    
+                    <span>Descending</span>
+                    <input type="radio" class="sort-descending" name="sortBy" onchange="onSortBy()" />
                 </label>
 
-                <label>
-                    <span>Descending</span>
-                    <input class="sort-descending" type="checkbox" oninput="onSortBy()" />
-                </label>
+                
 
 
             </div>
