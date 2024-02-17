@@ -10,6 +10,10 @@ body {
 
 }
 
+body.rtl {
+    direction: rtl;
+}
+
 .filter {
     margin: 10px;
     display: inline;

@@ -16,6 +16,7 @@ function onInit() {
     // renderRating()
     readQueryParams()
     renderBook()
+    doTrans()
 
 }
 
@@ -286,6 +287,19 @@ function setQueryParams() {
         window.location.pathname + '?' + queryParams.toString()
 
     window.history.pushState({ path: newUrl }, '', newUrl)
+
+
+}
+
+function onSetLang(lang){
+    setLang(lang)
+
+    if (lang === 'he') document.body.classList.add('rtl')
+    else document.body.classList.remove('rtl')
+
+
+    renderBook()
+    doTrans()
 
 
 }
