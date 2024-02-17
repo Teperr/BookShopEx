@@ -6,6 +6,8 @@ const gQueryOptions = {
     page: { idx: 0, size: 5 }
 }
 
+var gBookToEdit = null
+
 console.log('gQueryOptions:', gQueryOptions)
 
 
@@ -76,10 +78,19 @@ function onRemoveBook(bookId) {
 
 
 function onUpdateBook(bookId) {
-    const newPrice = +prompt('Put new price')
+    gBookToEdit = getBookById(bookId)
 
-    updateBook(bookId, newPrice)
-    renderBook()
+    const elModal = document.querySelector('.add-button-dialog')
+
+    elModal.querySelector('.title').value = gBookToEdit.title
+    elModal.querySelector('.price').value = gBookToEdit.price
+    elModal.querySelector('.dropdown-rating').value = gBookToEdit.rating
+
+
+
+    elModal.showModal()
+    // updateBook(bookId, newPrice)
+    // renderBook()
 
 }
 
@@ -108,7 +119,14 @@ function onSaveCar() {
     const bookPrice = elPrive.value
     const bookRating = elRating.value
 
-    addBook(bookTitel, bookPrice, bookRating)
+    if (gBookToEdit) {
+        updateBook(gBookToEdit.id, bookTitel, bookPrice, bookRating)
+        gBookToEdit = null
+    } else {
+
+        addBook(bookTitel, bookPrice, bookRating)
+    }
+
     elModal.reset()
 
     renderBook()
@@ -215,13 +233,13 @@ function readQueryParams() {
         rating: +queryParams.get('rating') || 0
     }
 
-    if (queryParams.get('sortBy')){
+    if (queryParams.get('sortBy')) {
         const prop = queryParams.get('sortBy')
         const dir = queryParams.get('sortDir')
         gQueryOptions.sortBy[prop] = dir
     }
 
-    if (queryParams.get('pageIdx')){
+    if (queryParams.get('pageIdx')) {
         gQueryOptions.page.idx = +queryParams.get('pageIdx')
         gQueryOptions.page.size = +queryParams.get('pageSize')
     }
@@ -230,7 +248,7 @@ function readQueryParams() {
 }
 
 
-function renderQueryParams(){
+function renderQueryParams() {
 
     document.querySelector('.filter .search').value = gQueryOptions.filterBy.txt
     document.querySelector('.filter .dropdown-rating').value = gQueryOptions.filterBy.rating
